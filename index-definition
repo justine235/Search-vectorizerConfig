@@ -1,0 +1,132 @@
+{
+  "name": "vector-1731962887548",
+  "fields": [
+    {
+      "name": "chunk_id",
+      "type": "Edm.String",
+      "key": true,
+      "retrievable": true,
+      "stored": true,
+      "searchable": true,
+      "filterable": false,
+      "sortable": true,
+      "facetable": false,
+      "analyzer": "keyword",
+      "synonymMaps": []
+    },
+    {
+      "name": "parent_id",
+      "type": "Edm.String",
+      "key": false,
+      "retrievable": true,
+      "stored": true,
+      "searchable": false,
+      "filterable": true,
+      "sortable": false,
+      "facetable": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "chunk",
+      "type": "Edm.String",
+      "key": false,
+      "retrievable": true,
+      "stored": true,
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "title",
+      "type": "Edm.String",
+      "key": false,
+      "retrievable": true,
+      "stored": true,
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "text_vector",
+      "type": "Collection(Edm.Single)",
+      "key": false,
+      "retrievable": true,
+      "stored": true,
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "synonymMaps": [],
+      "dimensions": 1536,
+      "vectorSearchProfile": "vector-1731962887548-azureOpenAi-text-profile"
+    }
+  ],
+  "scoringProfiles": [],
+  "suggesters": [],
+  "analyzers": [],
+  "tokenizers": [],
+  "tokenFilters": [],
+  "charFilters": [],
+  "normalizers": [],
+  "similarity": {
+    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity"
+  },
+  "semantic": {
+    "defaultConfiguration": "vector-1731962887548-semantic-configuration",
+    "configurations": [
+      {
+        "name": "vector-1731962887548-semantic-configuration",
+        "prioritizedFields": {
+          "titleField": {
+            "fieldName": "title"
+          },
+          "prioritizedContentFields": [
+            {
+              "fieldName": "chunk"
+            }
+          ],
+          "prioritizedKeywordsFields": []
+        }
+      }
+    ]
+  },
+  "vectorSearch": {
+    "algorithms": [
+      {
+        "name": "vector-1731962887548-algorithm",
+        "kind": "hnsw",
+        "hnswParameters": {
+          "m": 4,
+          "efConstruction": 400,
+          "efSearch": 500,
+          "metric": "cosine"
+        }
+      }
+    ],
+    "profiles": [
+      {
+        "name": "vector-1731962887548-azureOpenAi-text-profile",
+        "algorithm": "vector-1731962887548-algorithm",
+        "vectorizer": "vector-1731962887548-azureOpenAi-text-vectorizer"
+      }
+    ],
+    "vectorizers": [
+      {
+        "name": "vector-1731962887548-azureOpenAi-text-vectorizer",
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "https://chatbotreal-time.openai.azure.com",
+          "deploymentId": "text-embedding-ada-002",
+          "apiKey": "<redacted>",
+          "modelName": "text-embedding-ada-002"
+        }
+      }
+    ],
+    "compressions": []
+  },
+  "@odata.etag": "\"0x8DD0812AB4297D5\""
+}
